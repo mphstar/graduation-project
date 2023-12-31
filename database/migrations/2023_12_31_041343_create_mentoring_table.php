@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('question');
             $table->string('question_file_path')->nullable();
             $table->date('question_date');
-            $table->text('answer');
+            $table->text('answer')->nullable();
             $table->string('answer_file_path')->nullable();
-            $table->date('answer_date');
+            $table->date('answer_date')->nullable();
             $table->timestamps();
         });
     }
