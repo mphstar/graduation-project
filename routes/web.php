@@ -30,6 +30,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Sementara Kutaruh Sni Biar Kalo Mau Buka Kudu Login sama biar bisa ngambil nama/email, Tapi ntah knp ga bisa ke Dashboard
+    Route::get('/admin', function () {
+        return view('admin.admin-main');
+    })->name('admin.main');
+
+    Route::get('/studentlist', function () {
+        return view('admin.admin-student-list');
+    })->name('admin.student');
+
+    Route::get('/teacherlist', function () {
+        return view('admin.admin-teacher-list');
+    })->name('admin.teacher');
 });
 
 require __DIR__.'/auth.php';
