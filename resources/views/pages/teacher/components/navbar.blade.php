@@ -8,15 +8,20 @@
         <div id="content"
             class="flex items-center translate-x-[1280px] duration-300 ease-in-out md:translate-x-0 md:h-fit flex-col md:flex-row md:border-none rounded-md w-[80%] h-screen md:w-fit px-3 fixed right-0 top-0 py-4 md:py-0 z-[100] md:static gap-2 bg-white">
             <h1 class="mb-4 md:hidden">Select Menu</h1>
-            <a class="w-full" href="{{ route('student.profile') }}">
+            <a class="w-full" href="{{ route('teacher.profile') }}">
                 <div
                     class="{{ Request::segment(2) == 'profile' ? 'flex text-white bg-red-500' : '' }} px-3 py-1 rounded-md">
                     Profile</div>
             </a>
-            <a class="w-full" href="{{ route('student.mentoring') }}">
+            <a class="w-full" href="{{ route('teacher.mentoring') }}">
                 <div
                     class="{{ Request::segment(2) == 'mentoring' ? 'flex text-white bg-red-500' : '' }} px-3 py-1 rounded-md">
                     Mentoring</div>
+            </a>
+            <a class="w-full" href="{{ route('teacher.student') }}">
+                <div
+                    class="{{ Request::segment(2) == 'student' ? 'flex text-white bg-red-500' : '' }} px-3 py-1 rounded-md">
+                    Students</div>
             </a>
         </div>
         <div class="flex-1 self-end md:flex items-end justify-end hidden"><!-- Authentication -->

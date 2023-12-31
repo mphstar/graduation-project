@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\MentoringController;
+use App\Http\Controllers\Teacher\MentoringController as TeacherMentoringController;
+use App\Http\Controllers\Teacher\StudentController as TeacherStudentController;
 use App\Http\Middleware\StudentMiddleware;
+use App\Http\Middleware\TeacherMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +40,24 @@ Route::middleware('auth')->group(function () {
             Route::prefix('mentoring')->group(function () {
                 Route::get('/', [MentoringController::class, 'index'])->name('student.mentoring');
                 Route::post('/new_question', [MentoringController::class, 'new_question'])->name('student.mentoring.new_question');
+            });
+        });
+    });
+
+    Route::middleware([TeacherMiddleware::class])->group(function () {
+        Route::prefix('teacher')->group(function () {
+            Route::get('/profile', function () {
+                return view('pages.teacher.profile');
+            })->name('teacher.profile');
+
+            Route::prefix('mentoring')->group(function () {
+                Route::get('/', [TeacherMentoringController::class, 'index'])->name('teacher.mentoring');
+                Route::post('/answer', [TeacherMentoringController::class, 'answer'])->name('teacher.mentoring.answer');
+            });
+
+            Route::prefix('student')->group(function () {
+                Route::get('/', [TeacherStudentController::class, 'index'])->name('teacher.student');
+                Route::post('/set', [TeacherStudentController::class, 'set_student'])->name('teacher.student.set');
             });
         });
     });
