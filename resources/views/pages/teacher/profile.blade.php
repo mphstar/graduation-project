@@ -5,7 +5,7 @@
         @include('pages.teacher.components.navbar')
         <div class="flex flex-col md:flex-row gap-10 max-w-[1280px] mx-auto mt-4 w-full px-4">
             <div class="md:p-10">
-                <img class="rounded-full w-40 h-40 flex" src="https://picsum.photos/200/300" alt="profile">
+                <img class="rounded-full w-40 h-40 flex" src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="profile">
             </div>
             <div class="flex flex-col flex-1 pb-8">
                 <h1 class="font-bold text-2xl">Edit Profile</h1>
