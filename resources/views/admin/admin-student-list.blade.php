@@ -71,27 +71,19 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">1</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">2021001</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Abdullah</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Ali</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Computer Science</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <button class="text-blue-500 hover:underline mr-2">Edit</button>
-                                            <button class="text-red-500 hover:underline">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">2</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">2021002</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Bintang</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Malindo</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Physics</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <button class="text-blue-500 hover:underline mr-2">Edit</button>
-                                            <button class="text-red-500 hover:underline">Delete</button>
-                                        </td>
+                                    @foreach ($students as $student)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->student_id }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->firstname }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->lastname }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->major }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <button class="text-blue-500 hover:underline mr-2">Edit</button>
+                                                @include('profile.partials.delete-user-form')
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tr>
                                 </tbody>
                             </table>
