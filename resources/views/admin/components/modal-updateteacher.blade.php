@@ -31,6 +31,18 @@
             </div>
 
             <div class="mt-4">
+                <x-input-label for="update_major_id" :value="__('Major')" />
+                <select id="update_major_id" name="update_major_id"
+                    class="block mt-1 w-full border-gray-300 rounded-md p-2 whitespace-normal">
+                    <option value="">Select Major</option>
+                    @foreach (\App\Models\Major::getDropdownList() as $majorId => $majorName)
+                        <option value="{{ $majorId }}">{{ $majorName }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('update_major_id')" class="mt-2" />
+            </div>
+
+            <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />
 
                 <x-text-input id="update_password" class="block mt-1 w-full" type="password" name="update_password"

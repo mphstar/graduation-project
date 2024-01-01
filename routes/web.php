@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AdminBroadcastController;
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\Student\BroadcastController;
+use App\Http\Controllers\Teacher\BroadcastController as TeacherBroadcastController;
 use App\Http\Controllers\Student\MentoringController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Teacher\MentoringController as TeacherMentoringController;
@@ -95,6 +96,10 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/', [TeacherStudentController::class, 'index'])->name('teacher.student');
                 Route::post('/broadcast', [TeacherStudentController::class, 'broadcast_message'])->name('teacher.student.broadcast');
                 Route::post('/set', [TeacherStudentController::class, 'set_student'])->name('teacher.student.set');
+            });
+
+            Route::prefix('broadcast')->group(function () {
+                Route::get('/', [TeacherBroadcastController::class, 'index'])->name('teacher.broadcast');
             });
         });
     });

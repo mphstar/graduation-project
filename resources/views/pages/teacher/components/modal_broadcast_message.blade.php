@@ -10,8 +10,9 @@
             <header>
                 <div
                     class="flex w-full h-fit flex-row justify-between px-6 lg:px-12 py-6 items-center border-b-2 dark:border-b-gray-600">
-                    <h1 id="titleModal" class="font-poppins-semibold">Answer Question</h1>
-                    <div onclick="handleModalBroadcastMessage()" class="bg-[#ED3237] py-2 flex items-center px-2 rounded-md">
+                    <h1 id="titleModal" class="font-poppins-semibold">Broadcast Message</h1>
+                    <div onclick="handleModalBroadcastMessage()"
+                        class="bg-[#ED3237] py-2 flex items-center px-2 rounded-md">
                         <svg width="11" height="11" viewBox="0 0 11 11" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -24,7 +25,7 @@
 
             <div class="flex flex-col flex-grow w-full px-6 lg:px-12 mt-4 overflow-y-auto">
                 <div class="grid grid-cols-1 h-full gap-1">
-                <div class="flex flex-col w-full">
+                    <div class="flex flex-col w-full">
                         <p class="py-3">Title <span class="text-red-600">*</span></p>
                         <div class=""><input required
                                 class="w-full border-[2px] px-3 py-2 border-gray-300 rounded-lg" type="text"
@@ -37,7 +38,7 @@
                                 id="message" placeholder=""></textarea>
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>

@@ -15,4 +15,20 @@ class Major extends Model
 
     // fillable mendevinisikan field mana saja yang dapat kita isikan
     protected $guarded = [];
+
+    public static function getDropdownList($selectedMajorId = null)
+    {
+        $majors = static::pluck('name', 'id')->toArray();
+
+        // Jika selectedMajorId tidak null, tambahkan major yang dipilih ke opsi dropdown
+        if ($selectedMajorId !== null) {
+            $selectedMajor = static::find($selectedMajorId);
+
+            if ($selectedMajor) {
+                $majors[$selectedMajorId] = $selectedMajor->nama_kolom_nama_major;
+            }
+        }
+
+        return $majors;
+    }
 }

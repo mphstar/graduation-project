@@ -89,7 +89,9 @@
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->teacher_id }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->first_name }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->last_name }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->major_id }}</td>
+                                            <td class="px-6 py-4">
+                                                {{ $teacher->major->name ?? 'No major selected' }}
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->user->email }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->gender }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">

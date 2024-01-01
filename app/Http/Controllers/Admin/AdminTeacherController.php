@@ -52,6 +52,7 @@ class AdminTeacherController extends Controller
             'update_first_name' => 'required|string|max:255',
             'update_last_name' => 'required|string|max:255',
             'update_teacher_id' => 'required|string|max:255',
+            'update_major_id' => 'required|exists:major,id',
             'update_password' => 'nullable|string|min:8',
         ]);
 
@@ -62,6 +63,7 @@ class AdminTeacherController extends Controller
         $teacher->first_name = $request->update_first_name;
         $teacher->last_name = $request->update_last_name;
         $teacher->teacher_id = $request->update_teacher_id;
+        $teacher->major_id = $request->update_major_id;
 
         // Save the teacher
         $teacher->save();

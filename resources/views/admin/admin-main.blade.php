@@ -62,7 +62,7 @@
                     </button>
                 </div>
 
-                <div class=" right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                {{-- <div class=" right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                     <div class="py-1" role="none">
                         <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
@@ -73,13 +73,18 @@
                         <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                             id="menu-item-2">Monthly</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
-            <div>
-                Disini nanti chartnya
+            <div style="width: 80%; margin: auto;">
+                <canvas id="myChart"></canvas>
             </div>
 
         </div>
     </div>
+@endsection
+
+@section('otherjs')
+    <script src="{{ asset('js/admin/chart.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 @endsection
