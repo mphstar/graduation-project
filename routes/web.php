@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AdminBroadcastController;
+use App\Http\Controllers\GuestbookController;
+use App\Http\Controllers\Student\BroadcastController;
 use App\Http\Controllers\Student\MentoringController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Teacher\MentoringController as TeacherMentoringController;
@@ -29,6 +31,7 @@ Route::get('/', function () {
     return view('landing');
 });
 
+Route::post('/guestbook', [GuestbookController::class, 'guestbook'])->name('guestbook');
 
 
 Route::get('/dashboard', function () {
@@ -67,6 +70,10 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/', [MentoringController::class, 'index'])->name('student.mentoring');
                 Route::post('/new_question', [MentoringController::class, 'new_question'])->name('student.mentoring.new_question');
             });
+
+            Route::prefix('broadcast')->group(function () {
+                Route::get('/', [BroadcastController::class, 'index'])->name('student.broadcast');
+            });
         });
     });
 
@@ -86,6 +93,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('student')->group(function () {
                 Route::get('/', [TeacherStudentController::class, 'index'])->name('teacher.student');
+                Route::post('/broadcast', [TeacherStudentController::class, 'broadcast_message'])->name('teacher.student.broadcast');
                 Route::post('/set', [TeacherStudentController::class, 'set_student'])->name('teacher.student.set');
             });
         });

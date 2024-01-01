@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Models\BroadcastMessageStudent;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class StudentController extends Controller
@@ -58,6 +60,27 @@ class StudentController extends Controller
 
 
         Alert::success('Success', 'Success update student');
+        return redirect()->route('teacher.student');
+    }
+
+    public function broadcast_message(Request $request){
+        $validator = Validator::make($request->all(), [
+            'title' =>  'required',
+            'message' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            Alert::error('Failed', $validator->errors()->first());
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $broadcast = new BroadcastMessageStudent;
+        $broadcast->title = $request->title;
+        $broadcast->content = $request->message;
+        $broadcast->teacher_id = Auth::user()->teacher->id;
+        $broadcast->save();
+
+        Alert::success('Success', 'Success broadcast messages');
         return redirect()->route('teacher.student');
     }
 }
