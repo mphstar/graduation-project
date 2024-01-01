@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
         if($user){
             $student = Student::create([
                 "first_name" => $request->first_name,
-                "last_name" => $request->first_name,
+                "last_name" => $request->last_name,
                 "user_id" => $user->id
             ]);
         }

@@ -15,8 +15,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen">
+        @include('sweetalert::alert')
+        <div class="min-h-screen flex flex-col">
             @yield('content')
         </div>
+        
+        <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+        @yield('otherjs')
     </body>
 </html>
