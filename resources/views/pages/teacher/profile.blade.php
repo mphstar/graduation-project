@@ -16,30 +16,46 @@
                             <label for="first_name">First Name</label>
                             <input class="px-3 rounded-lg border-gray-300" value="{{ $user->teacher->first_name }}"
                                 name="first_name" id="first_name" type="text" placeholder="">
+                            @error('first_name')
+                                <span class="text-red-500" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="flex flex-col flex-1">
                             <label for="last_name">Last Name</label>
                             <input class="px-3 rounded-lg border-gray-300" name="last_name" id="last_name"
                                 value="{{ $user->teacher->last_name }}" type="text" placeholder="">
+                            @error('last_name')
+                                <span class="text-red-500" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                     </div>
                     <div class="flex flex-col flex-1 mt-3">
-                        <label for="student_id">Student ID Number</label>
+                        <label for="teacher_id">Teacher ID Number</label>
                         <input value="{{ $user->teacher->teacher_id }}" class="px-3 rounded-lg border-gray-300"
-                            id="student_id" name="student_id" type="text" placeholder="">
+                            id="teacher_id" name="teacher_id" type="text" placeholder="">
                     </div>
                     <div class="flex flex-col flex-1 mt-3">
                         <label for="email">Email</label>
                         <input value="{{ $user->email }}" class="px-3 rounded-lg border-gray-300" id="email"
                             name="email" type="text" placeholder="">
+                        @error('email')
+                            <span class="text-red-500" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="flex flex-col flex-1 mt-3">
                         <label for="major">Major</label>
                         <select class="px-3 rounded-lg border-gray-300" name="major" id="major">
                             <option disabled selected value=""></option>
                             @foreach ($major as $item)
-                                <option {{ $item->id == $user->teacher->major_id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option {{ $item->id == $user->teacher->major_id ? 'selected' : '' }}
+                                    value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -65,22 +81,30 @@
                 </form>
 
 
-                <h1 class="font-bold text-2xl mt-6">Edit Password</h1>
+                <form action="{{ route('teacher.profile.update_password') }}" method="post">
+                    @csrf
+                    <h1 class="font-bold text-2xl mt-6">Edit Password</h1>
 
-                <div class="flex flex-col flex-1 mt-3">
-                    <label for="new_password">New Password</label>
-                    <input class="px-3 rounded-lg border-gray-300" id="new_password" name="new_password" type="text"
-                        placeholder="">
-                </div>
-                <div class="flex flex-col flex-1 mt-3">
-                    <label for="confirm_password">Confirm New Password</label>
-                    <input class="px-3 rounded-lg border-gray-300" id="confirm_password" name="confirm_password"
-                        type="text" placeholder="">
-                </div>
+                    <div class="flex flex-col flex-1 mt-3">
+                        <label for="password">New Password</label>
+                        <input class="px-3 rounded-lg border-gray-300" id="password" name="password" type="password"
+                            placeholder="">
+                        @error('password')
+                            <span class="text-red-500" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="flex flex-col flex-1 mt-3">
+                        <label for="password_confirmation">Confirm New Password</label>
+                        <input class="px-3 rounded-lg border-gray-300" id="password_confirmation"
+                            name="password_confirmation" type="password" placeholder="">
+                    </div>
 
-                <button
-                    class="bg-green-500 py-2 text-white rounded-md mt-4 w-full md:w-fit px-12 mb-4 hover:bg-green-600">Save</button>
+                    <button type="submit"
+                        class="bg-green-500 py-2 text-white rounded-md mt-4 w-full md:w-fit px-12 mb-4 hover:bg-green-600">Save</button>
 
+                </form>
             </div>
         </div>
     </div>

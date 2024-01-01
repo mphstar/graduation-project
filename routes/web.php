@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('teacher')->group(function () {
             Route::get('/profile', [TeacherProfileController::class, 'index'])->name('teacher.profile');
             Route::post('/profile/update', [TeacherProfileController::class, 'update_profile'])->name('teacher.profile.update');
+            Route::post('/profile/update_password', [TeacherProfileController::class, 'update_password'])->name('teacher.profile.update_password');
 
             Route::prefix('mentoring')->group(function () {
                 Route::get('/', [TeacherMentoringController::class, 'index'])->name('teacher.mentoring');
