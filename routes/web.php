@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\MentoringController;
 use App\Http\Controllers\Teacher\MentoringController as TeacherMentoringController;
+use App\Http\Controllers\Teacher\ProfileController as TeacherProfileController;
 use App\Http\Controllers\Teacher\StudentController as TeacherStudentController;
 use App\Http\Middleware\StudentMiddleware;
 use App\Http\Middleware\TeacherMiddleware;
@@ -46,9 +47,8 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware([TeacherMiddleware::class])->group(function () {
         Route::prefix('teacher')->group(function () {
-            Route::get('/profile', function () {
-                return view('pages.teacher.profile');
-            })->name('teacher.profile');
+            Route::get('/profile', [TeacherProfileController::class, 'index'])->name('teacher.profile');
+            Route::post('/profile/update', [TeacherProfileController::class, 'update_profile'])->name('teacher.profile.update');
 
             Route::prefix('mentoring')->group(function () {
                 Route::get('/', [TeacherMentoringController::class, 'index'])->name('teacher.mentoring');

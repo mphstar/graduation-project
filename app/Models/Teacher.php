@@ -15,4 +15,8 @@ class Teacher extends Model
 
     // fillable mendevinisikan field mana saja yang dapat kita isikan
     protected $guarded = [];
+
+    public function major(){
+        return $this->belongsTo(Major::class, 'major_id', 'id');
+    }
 }

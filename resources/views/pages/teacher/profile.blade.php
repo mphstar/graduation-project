@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    
     <div class="flex min-h-screen bg-gray-50 flex-col w-full h-full">
         @include('pages.teacher.components.navbar')
         <div class="flex flex-col md:flex-row gap-10 max-w-[1280px] mx-auto mt-4 w-full px-4">
@@ -10,51 +9,60 @@
             </div>
             <div class="flex flex-col flex-1 pb-8">
                 <h1 class="font-bold text-2xl">Edit Profile</h1>
-                <div class="flex-col md:flex-row flex gap-3 mt-4">
-                    <div class="flex flex-col flex-1">
-                        <label for="first_name">First Name</label>
-                        <input class="px-3 rounded-lg border-gray-300" name="first_name" id="first_name" type="text"
-                            placeholder="">
-                    </div>
-                    <div class="flex flex-col flex-1">
-                        <label for="last_name">Last Name</label>
-                        <input class="px-3 rounded-lg border-gray-300" name="last_name" id="last_name" type="text"
-                            placeholder="">
-                    </div>
+                <form action="{{ route('teacher.profile.update') }}" method="post">
+                    @csrf
+                    <div class="flex-col md:flex-row flex gap-3 mt-4">
+                        <div class="flex flex-col flex-1">
+                            <label for="first_name">First Name</label>
+                            <input class="px-3 rounded-lg border-gray-300" value="{{ $user->teacher->first_name }}"
+                                name="first_name" id="first_name" type="text" placeholder="">
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <label for="last_name">Last Name</label>
+                            <input class="px-3 rounded-lg border-gray-300" name="last_name" id="last_name"
+                                value="{{ $user->teacher->last_name }}" type="text" placeholder="">
+                        </div>
 
-                </div>
-                <div class="flex flex-col flex-1 mt-3">
-                    <label for="student_id">Student ID Number</label>
-                    <input class="px-3 rounded-lg border-gray-300" id="student_id" name="student_id" type="text"
-                        placeholder="">
-                </div>
-                <div class="flex flex-col flex-1 mt-3">
-                    <label for="email">Email</label>
-                    <input class="px-3 rounded-lg border-gray-300" id="email" name="email" type="text"
-                        placeholder="">
-                </div>
-                <div class="flex flex-col flex-1 mt-3">
-                    <label for="major">Major</label>
-                    <select class="px-3 rounded-lg border-gray-300" name="major" id="major">
-                        <option value="tif">Informatics Engineering</option>
-                    </select>
-                </div>
-                <div class="flex-col md:flex-row flex gap-3 mt-4">
-                    <div class="flex flex-col flex-1">
-                        <label for="gender">Gender</label>
-                        <select class="px-3 rounded-lg border-gray-300" name="gender" id="gender">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                    </div>
+                    <div class="flex flex-col flex-1 mt-3">
+                        <label for="student_id">Student ID Number</label>
+                        <input value="{{ $user->teacher->teacher_id }}" class="px-3 rounded-lg border-gray-300"
+                            id="student_id" name="student_id" type="text" placeholder="">
+                    </div>
+                    <div class="flex flex-col flex-1 mt-3">
+                        <label for="email">Email</label>
+                        <input value="{{ $user->email }}" class="px-3 rounded-lg border-gray-300" id="email"
+                            name="email" type="text" placeholder="">
+                    </div>
+                    <div class="flex flex-col flex-1 mt-3">
+                        <label for="major">Major</label>
+                        <select class="px-3 rounded-lg border-gray-300" name="major" id="major">
+                            <option disabled selected value=""></option>
+                            @foreach ($major as $item)
+                                <option {{ $item->id == $user->teacher->major_id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <div class="flex flex-col flex-1">
-                        <label for="datebirth">Date of Birth</label>
-                        <input class="px-3 rounded-lg border-gray-300" id="datebirth" name="datebirth" type="date"
-                            placeholder="">
+                    <div class="flex-col md:flex-row flex gap-3 mt-4">
+                        <div class="flex flex-col flex-1">
+                            <label for="gender">Gender</label>
+                            <select class="px-3 rounded-lg border-gray-300" name="gender" id="gender">
+                                <option disabled selected value=""></option>
+                                <option {{ $user->teacher->gender == 'male' ? 'selected' : '' }} value="male">Male
+                                </option>
+                                <option {{ $user->teacher->gender == 'female' ? 'selected' : '' }} value="female">Female
+                                </option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <label for="datebirth">Date of Birth</label>
+                            <input value="{{ $user->teacher->date_of_birth }}" class="px-3 rounded-lg border-gray-300"
+                                id="datebirth" name="datebirth" type="date" placeholder="">
+                        </div>
                     </div>
-                </div>
-                <button
-                    class="bg-green-500 py-2 text-white rounded-md mt-4 w-full md:w-fit px-12 mb-4 hover:bg-green-600">Save</button>
+                    <button
+                        class="bg-green-500 py-2 text-white rounded-md mt-4 w-full md:w-fit px-12 mb-4 hover:bg-green-600">Save</button>
+                </form>
 
 
                 <h1 class="font-bold text-2xl mt-6">Edit Password</h1>
