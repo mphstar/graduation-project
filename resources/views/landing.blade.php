@@ -116,26 +116,27 @@
                     <div class="flex-1 flex flex-col pl-12 md:pl-32 pr-12">
                         <h1 class="font-extrabold text-4xl">Contact Us</h1>
                         <p class="mt-4">Feel free to contact us. We will get in touch as soon as posible.</p>
-                        <form class="mt-6 w-full md:w-[70%]" action="" method="post">
+                        <form class="mt-6 w-full md:w-[70%]" action="{{ route('guestbook') }}" method="post">
+                            @csrf
                             <div class="flex flex-col w-full">
                                 <p class="py-1">Name <span class="text-red-600">*</span></p>
                                 <div class="">
                                     <input required class="w-full border-[2px] px-3 py-2 border-gray-300 rounded-lg"
-                                        type="text" name="question_file" id="question_file" placeholder="">
+                                        type="text" name="name" id="name" placeholder="">
                                 </div>
                             </div>
                             <div class="flex flex-col w-full mt-2">
                                 <p class="py-1">Email <span class="text-red-600">*</span></p>
                                 <div class="">
                                     <input required class="w-full border-[2px] px-3 py-2 border-gray-300 rounded-lg"
-                                        type="text" name="question_file" id="question_file" placeholder="">
+                                        type="text" name="email" id="email" placeholder="">
                                 </div>
                             </div>
                             <div class="flex flex-col w-full mt-2">
                                 <p class="py-1">Message <span class="text-red-600">*</span></p>
                                 <div class="">
                                     <textarea required class="w-full min-h-[100px] border-[2px] px-3 py-2 border-gray-300 rounded-lg" type="text"
-                                        name="question_file" id="question_file" placeholder=""></textarea>
+                                        name="message" id="message" placeholder=""></textarea>
                                 </div>
                             </div>
                             <button

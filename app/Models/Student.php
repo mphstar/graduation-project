@@ -16,12 +16,18 @@ class Student extends Model
     // fillable mendevinisikan field mana saja yang dapat kita isikan
     protected $guarded = [];
 
-    public function mentoring(){
+    public function mentoring()
+    {
         return $this->hasMany(Mentoring::class, 'student_id', 'id');
     }
 
-    public function major(){
+    public function major()
+    {
         return $this->belongsTo(Major::class, 'major_id', 'id');
     }
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

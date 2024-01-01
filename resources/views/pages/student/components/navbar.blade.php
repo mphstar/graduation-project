@@ -18,6 +18,20 @@
                     class="{{ Request::segment(2) == 'mentoring' ? 'flex text-white bg-red-500' : '' }} px-3 py-1 rounded-md">
                     Mentoring</div>
             </a>
+            <a class="w-full" href="{{ route('student.broadcast') }}">
+                <div
+                    class="{{ Request::segment(2) == 'broadcast' ? 'flex text-white bg-red-500' : '' }} px-3 py-1 rounded-md">
+                    Broadcasts</div>
+            </a>
+            <form class="w-full md:hidden" method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link class="text-start w-full" :href="route('logout')"
+                    onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-dropdown-link>
+            </form>
         </div>
         <div class="flex-1 self-end md:flex items-end justify-end hidden"><!-- Authentication -->
             <form method="POST" action="{{ route('logout') }}">

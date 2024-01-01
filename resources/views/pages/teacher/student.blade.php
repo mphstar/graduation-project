@@ -2,6 +2,7 @@
 
 @section('content')
     @include('pages.teacher.components.modal_select_student')
+    @include('pages.teacher.components.modal_broadcast_message')
     <div class="flex min-h-screen bg-gray-50 flex-col w-full h-full">
         @include('pages.teacher.components.navbar')
         <div class="flex flex-col max-w-[1280px] h-full flex-1 mx-auto w-full mt-6 px-4">
@@ -9,11 +10,15 @@
                 <h1 class="font-semibold text-2xl">List Students</h1>
                 <div class="flex flex-row md:flex-row gap-2 w-full cursor-default md:w-fit mt-4 md:mt-0 justify-between">
                     <div class="flex flex-col md:flex-row h-fit items-center  gap-2 w-full md:w-fit">
+                        <div onclick="handleModalBroadcastMessage()"
+                            class="bg-gray-600 hover:bg-gray-700 w-full md:w-fit text-center  px-3 py-2 h-fit text-white rounded-md items-center justify-center">
+                            Broadcast Messages
+                        </div>
                         <div onclick="showModalSelectStudent({{ $selected_student }}, {{ $unselected_student }})"
-                            class="bg-green-500 hover:bg-green-600  px-3 py-2 h-fit text-white rounded-md items-center justify-center">
+                            class="bg-green-500 hover:bg-green-600 w-full md:w-fit text-center  px-3 py-2 h-fit text-white rounded-md items-center justify-center">
                             Select Student
                         </div>
-                        <form action="{{ route('teacher.student') }}" method="get"><input id="keyword"
+                        <form class="w-full md:w-fit" action="{{ route('teacher.student') }}" method="get"><input id="keyword"
                                 value="{{ Request::has('search') ? Request::query('search') : '' }}"
                                 class="py-2 px-6 border-[2px] border-gray-200 rounded-lg outline-none w-full flex-1"
                                 placeholder="Search..." name="search" type="text"></form>

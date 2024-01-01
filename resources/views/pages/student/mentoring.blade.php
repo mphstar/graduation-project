@@ -10,10 +10,10 @@
                 <div class="flex flex-row md:flex-row gap-2 w-full cursor-default md:w-fit mt-4 md:mt-0 justify-between">
                     <div class="flex flex-col sm:flex-row h-fit items-center  gap-2 w-full md:w-fit">
                         <div onclick="{{ Auth::user()->student->teacher_id == null ? 'handleMessage()' : 'handleModalQuestion()' }}"
-                            class="bg-green-500 hover:bg-green-600  px-3 py-2 h-fit text-white rounded-md items-center justify-center">
+                            class="bg-green-500 w-full text-center hover:bg-green-600  px-3 py-2 h-fit text-white rounded-md items-center justify-center">
                             Create Question
                         </div>
-                        <form action="{{ route('student.mentoring') }}" method="get"><input id="keyword"
+                        <form class="w-full" action="{{ route('student.mentoring') }}" method="get"><input id="keyword"
                                 value="{{ Request::has('search') ? Request::query('search') : '' }}"
                                 class="py-2 px-6 border-[2px] border-gray-200 rounded-lg outline-none w-full flex-1 md:max-w-[400px]"
                                 placeholder="Search..." name="search" type="text"></form>
