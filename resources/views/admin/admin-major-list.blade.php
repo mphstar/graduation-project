@@ -2,7 +2,8 @@
 
 @section('content')
     @include('layouts.admin-sidebar')
-    @include('admin.components.modal-updatestudent')
+    @include('admin.components.modal-addmajor')
+    @include('admin.components.modal-updatemajor')
 
     <div class="pl-64 pt-7">
 
@@ -36,10 +37,10 @@
                                     <p class="pt-2 pb-4 font-bold">
                                         Student List
                                     </p>
-                                    {{-- <button
-                                        class="text-white  bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">
-                                        Add Student
-                                    </button> --}}
+                                    <button onclick="openModalAddMajor()"
+                                        class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">
+                                        Add Major
+                                    </button>
                                 </div>
                                 <thead class="bg-gray-50">
                                     <tr>
@@ -49,27 +50,7 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Student ID
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Firstname
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Lastname
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Major
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Email
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Gender
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -78,22 +59,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach ($students as $student)
+                                    @foreach ($majors as $major)
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->student_id }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->first_name }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->last_name }}</td>
-                                            <td class="px-6 py-4">
-                                                {{ $student->major->name ?? 'No major selected' }}</td>
-                                            <td class="px-6 py-4">{{ $student->user->email }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->gender }}</td>
-                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $major->name }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex px-3">
                                                     <button
                                                         class="edit-btn flex items-center bg-gray-200 hover:bg-gray-100 text-gray-500 hover:text-blue-500 font-semibold py-1 px-4 mx-1 border border-gray-300 rounded shadow"
-                                                        onclick="openUpdateModal({{ $student->id }}, '{{ $student->first_name }}', '{{ $student->last_name }}', '{{ $student->student_id }}', '{{ $student->user->email }}')">
+                                                        onclick="openModalUpdateMajor({{ $major->id }}, '{{ $major->name }}')">
                                                         <svg class="mx-1 stroke-current hover:text-blue-500"
                                                             xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                                             viewBox="0 0 24 24" fill="none" stroke="#000000"
@@ -106,8 +80,7 @@
                                                         <span class="mx-1 pr-2">Update</span>
                                                     </button>
 
-                                                    <form action="{{ route('students-destroy', $student->id) }}"
-                                                        method="post">
+                                                    <form action="{{ route('major-destroy', $major->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button"
@@ -144,7 +117,7 @@
 @endsection
 
 @section('otherjs')
-    <script src="/js/admin/search.js"></script>
-    <script src="/js/admin/modalstudent.js"></script>
+    <script src="/js/admin/modalmajor.js"></script>
+    <script src="/js/admin/search-major.js"></script>
     <script src="/js/admin/toast-delete.js"></script>
 @endsection

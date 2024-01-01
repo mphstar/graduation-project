@@ -42,6 +42,7 @@ class AdminTeacherController extends Controller
 
         $user->teacher()->save($teacher);
 
+        Alert::success('Success', 'Success added Teacher');
         return redirect()->route('admin-teacher')->with('success', 'Teacher added successfully!');
     }
 
