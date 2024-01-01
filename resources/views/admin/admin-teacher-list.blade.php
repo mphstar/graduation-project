@@ -3,45 +3,48 @@
 @section('content')
     <!-- Include the sidebar content -->
     @include('layouts.admin-sidebar')
+    @include('admin.components.modal-addteacher')
+    @include('admin.components.modal-updateteacher')
 
     <!-- Ucapan selamat Datang Dan Hari Ini -->
     <div class="pl-64 pt-7">
 
         <div class="p-4 mt-6">
 
-            <form>
-                <label for="default-search"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
+            <div class="flex items-center justify-center">
+                <form class="flex items-center bg-white p-4 rounded-lg border border-gray-300 w-3/4">
+                    <label for="simple-search" class="sr-only">Search</label>
+                    <div class="relative w-full">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <input type="text" id="simple-search"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Search" required="">
                     </div>
-                    <input type="search" id="default-search"
-                        class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-zinc-500 dark:focus:border-zinc-500"
-                        placeholder="Search Teacher Name" required>
-                    <button type="submit"
-                        class="text-white absolute end-2.5 bottom-2.5 bg-zinc-700 hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">Search</button>
-                </div>
-            </form>
-
+                </form>
+            </div>
 
             <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="max-w-full mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                         <div class="p-6">
-                            <table class="min-w-full divide-y divide-gray-200">
+                            <table id="my-table" class="min-w-full divide-y divide-gray-200">
                                 <div class="flex justify-between items-center mb-4">
                                     <p class="pt-2 pb-4 font-bold">
                                         Teacher List
                                     </p>
-                                    <button
+
+                                    <button onclick="openModal()"
                                         class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">
                                         Add Teacher
                                     </button>
+
                                 </div>
                                 <thead class="bg-gray-50">
                                     <tr>
@@ -67,33 +70,73 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Email
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Gender
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">1</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">2021001</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Abdullah</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Ali</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Computer Science</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <button class="text-blue-500 hover:underline mr-2">Edit</button>
-                                            <button class="text-red-500 hover:underline">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">2</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">2021002</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Bintang</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Malindo</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Physics</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <button class="text-blue-500 hover:underline mr-2">Edit</button>
-                                            <button class="text-red-500 hover:underline">Delete</button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($teachers as $teacher)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->teacher_id }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->first_name }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->last_name }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->major_id }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->user->email }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $teacher->gender }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex px-3">
+                                                    <button
+                                                        class="edit-btn flex items-center bg-gray-200 hover:bg-gray-100 text-gray-500 hover:text-blue-500 font-semibold py-1 px-4 mx-1 border border-gray-300 rounded shadow"
+                                                        onclick="openUpdateModal({{ $teacher->id }}, '{{ $teacher->first_name }}', '{{ $teacher->last_name }}', '{{ $teacher->teacher_id }}', '{{ $teacher->user->email }}')">
+                                                        <svg class="mx-1 stroke-current hover:text-blue-500"
+                                                            xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                            viewBox="0 0 24 24" fill="none" stroke="#000000"
+                                                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path
+                                                                d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34">
+                                                            </path>
+                                                            <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+                                                        </svg>
+                                                        <span class="mx-1 pr-2">Update</span>
+                                                    </button>
+
+
+                                                    <form action="{{ route('teachers-destroy', $teacher->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button"
+                                                            class="flex items-center bg-gray-200 hover:bg-gray-100 text-gray-500 hover:text-red-500 font-semibold py-1 px-4 mx-1 border border-gray-300 rounded shadow delete-btn">
+                                                            <svg class="mx-1 stroke-current hover:text-red-500"
+                                                                xmlns="http://www.w3.org/2000/svg" width="12"
+                                                                height="12" viewBox="0 0 24 24" fill="none"
+                                                                stroke="#000000" stroke-width="1" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                                <path
+                                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                                </path>
+                                                                <line x1="10" y1="11" x2="10"
+                                                                    y2="17"></line>
+                                                                <line x1="14" y1="11" x2="14"
+                                                                    y2="17"></line>
+                                                            </svg>
+                                                            <span class="mx-1 pr-2">Delete</span>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -104,4 +147,10 @@
         </div>
 
     </div>
+@endsection
+
+@section('otherjs')
+    <script src="/js/admin/search.js"></script>
+    <script src="/js/admin/modalteacher.js"></script>
+    <script src="/js/admin/toast-delete.js"></script>
 @endsection

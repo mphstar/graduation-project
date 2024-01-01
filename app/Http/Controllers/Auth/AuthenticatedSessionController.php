@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (Auth::user()->level == 'admin') {
-            return redirect()->route('admin.home');
+            return redirect()->route('admin-main');
         } else if (Auth::user()->level == 'teacher') {
             return redirect()->route('teacher.profile');
         } else if (Auth::user()->level == 'student') {

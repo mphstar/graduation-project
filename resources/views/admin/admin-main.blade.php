@@ -10,7 +10,7 @@
         <div class="grid gap-4">
             <div class="p-4 mt-6">
                 <h2 class="text-slate-900 text-3xl tracking-tight font-bold mb-3 dark:text-slate-200">
-                    Hello!, {{ auth()->user()->email }} 
+                    Hello!, Admin
                 </h2>
                 <div class="text-neutral-600 font-medium flex justify-between">
                     <span class="text-left">
@@ -22,10 +22,10 @@
                 <div class="p-4">
                     <div class="rounded-lg shadow-sm bg-zinc-600  border pt-6 pb-6">
                         <span class="pl-5 text-lg font-normal text-white">
-                            Question
+                            Total Questions
                         </span>
                         <span class="block pl-5 text-2xl font-semibold text-white">
-                            100
+                            <p>{{ $totalQuestions }}</p>
                         </span>
                     </div>
                 </div>
@@ -33,10 +33,10 @@
                 <div class="p-4">
                     <div class="rounded-lg shadow-sm bg-zinc-600  border pt-6 pb-6">
                         <span class="pl-5 text-lg font-normal text-white">
-                            Answer
+                            Total Answers
                         </span>
                         <span class="block pl-5 text-2xl font-semibold text-white">
-                            200
+                            <p>{{ $totalAnswers }}</p>
                         </span>
                     </div>
                 </div>
