@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Teacher;
+namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Major;
 use App\Models\Student;
-use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
@@ -21,7 +20,7 @@ class ProfileController extends Controller
     public function index()
     {
         // return Auth::user();
-        return view('pages.teacher.profile', [
+        return view('pages.student.profile', [
             "user" => Auth::user(),
             "major" => Major::all()
         ]);
@@ -41,23 +40,23 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-    
+
         $user = User::find(Auth::user()->id);
 
         $user->email = $request->email;
-        $teacher = Teacher::where('user_id', $user->id)->first(); 
-        $teacher->first_name = $request->first_name;
-        $teacher->last_name = $request->last_name;
-        $teacher->teacher_id = $request->teacher_id;
-        $teacher->major_id = $request->major;
-        $teacher->gender = $request->gender;
-        $teacher->date_of_birth = $request->datebirth;
+        $student = Student::where('user_id', $user->id)->first();
+        $student->first_name = $request->first_name;
+        $student->last_name = $request->last_name;
+        $student->student_id = $request->student_id;
+        $student->major_id = $request->major;
+        $student->gender = $request->gender;
+        $student->date_of_birth = $request->datebirth;
 
-        $teacher->save();
+        $student->save();
         $user->save();
 
         Alert::success('Success', 'Success update profile');
-        return redirect()->route('teacher.profile');
+        return redirect()->route('student.profile');
     }
 
     public function update_password(Request $request)
@@ -72,7 +71,7 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-    
+
         $user = User::find(Auth::user()->id);
 
         $user->forceFill([
@@ -85,6 +84,6 @@ class ProfileController extends Controller
         $user->save();
 
         Alert::success('Success', 'Success update profile');
-        return redirect()->route('teacher.profile');
+        return redirect()->route('student.profile');
     }
 }

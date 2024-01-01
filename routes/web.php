@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\MentoringController;
+use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Teacher\MentoringController as TeacherMentoringController;
 use App\Http\Controllers\Teacher\ProfileController as TeacherProfileController;
 use App\Http\Controllers\Teacher\StudentController as TeacherStudentController;
@@ -33,9 +34,13 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::middleware([StudentMiddleware::class])->group(function () {
         Route::prefix('student')->group(function () {
-            Route::get('/profile', function () {
-                return view('pages.student.profile');
-            })->name('student.profile');
+
+
+            Route::prefix('profile')->group(function () {
+                Route::get('/', [StudentProfileController::class, 'index'])->name('student.profile');
+                Route::post('/update', [StudentProfileController::class, 'update_profile'])->name('student.profile.update');
+                Route::post('/update_password', [StudentProfileController::class, 'update_password'])->name('student.profile.update_password');
+            });
 
 
             Route::prefix('mentoring')->group(function () {
@@ -47,8 +52,11 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware([TeacherMiddleware::class])->group(function () {
         Route::prefix('teacher')->group(function () {
-            Route::get('/profile', [TeacherProfileController::class, 'index'])->name('teacher.profile');
-            Route::post('/profile/update', [TeacherProfileController::class, 'update_profile'])->name('teacher.profile.update');
+            Route::prefix('profile')->group(function () {
+                Route::get('/', [TeacherProfileController::class, 'index'])->name('teacher.profile');
+                Route::post('/update', [TeacherProfileController::class, 'update_profile'])->name('teacher.profile.update');
+                Route::post('/update_password', [TeacherProfileController::class, 'update_password'])->name('teacher.profile.update_password');
+            });
 
             Route::prefix('mentoring')->group(function () {
                 Route::get('/', [TeacherMentoringController::class, 'index'])->name('teacher.mentoring');

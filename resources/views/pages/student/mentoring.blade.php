@@ -9,7 +9,7 @@
                 <h1 class="font-semibold text-2xl">List Mentoring</h1>
                 <div class="flex flex-row md:flex-row gap-2 w-full cursor-default md:w-fit mt-4 md:mt-0 justify-between">
                     <div class="flex flex-col sm:flex-row h-fit items-center  gap-2 w-full md:w-fit">
-                        <div onclick="handleModalQuestion()"
+                        <div onclick="{{ Auth::user()->student->teacher_id == null ? 'handleMessage()' : 'handleModalQuestion()' }}"
                             class="bg-green-500 hover:bg-green-600  px-3 py-2 h-fit text-white rounded-md items-center justify-center">
                             Create Question
                         </div>
