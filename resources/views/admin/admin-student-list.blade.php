@@ -69,6 +69,10 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Mentor
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Gender
                                         </th>
                                         <th scope="col"
@@ -87,8 +91,10 @@
                                             <td class="px-6 py-4">
                                                 {{ $student->major->name ?? 'No major selected' }}</td>
                                             <td class="px-6 py-4">{{ $student->user->email }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->gender }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                {{ $student->teacher->first_name }} {{ $student->teacher->last_name }}
                                             </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->gender }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex px-3">
                                                     <button

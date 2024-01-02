@@ -23,8 +23,6 @@ class GuestbookController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-
-
         $email = new GuestbookMail($request->name, $request->email, $request->message);
         Mail::to(env('MAIL_USERNAME', 'graduation@mphstar.my.id'))->send($email);
 

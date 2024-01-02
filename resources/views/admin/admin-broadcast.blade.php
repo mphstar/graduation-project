@@ -37,7 +37,7 @@
             <div class="p-6">
 
                 <div class="max-w-full mx-auto mt-8">
-                    <h2 class="text-2xl font-semibold mb-4">Broadcast Messages</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-center">Broadcast Messages</h2>
                     @if (count($broadcastMessages) == 0)
                         <p>No messages</p>
                     @else

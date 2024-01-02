@@ -21,6 +21,11 @@ class Teacher extends Model
         return $this->belongsTo(Major::class, 'major_id', 'id');
     }
 
+    public function students()
+    {
+        return $this->hasMany(Student::class, 'teacher_id', 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

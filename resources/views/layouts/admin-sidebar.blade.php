@@ -31,6 +31,12 @@
                     </a>
                 </li>
                 <li class="relative">
+                    <a href="{{ route('admin-mentoring') }}"
+                        class="group flex h-12 cursor-pointer justify-center items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-white outline-none transition duration-300 ease-linear  hover:bg-white hover:text-black hover:outline-none focus:bg-white focus:text-black focus:outline-none active:bg-white active:text-black active:outline-none data-[te-sidenav-state-active]:text-black data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-white-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10">
+                        <span class=" font-semibold">Mentoring List</span>
+                    </a>
+                </li>
+                <li class="relative">
                     <a href="{{ route('admin-broadcast') }}"
                         class="group flex h-12 cursor-pointer justify-center items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-white outline-none transition duration-300 ease-linear  hover:bg-white hover:text-black hover:outline-none focus:bg-white focus:text-black focus:outline-none active:bg-white active:text-black active:outline-none data-[te-sidenav-state-active]:text-black data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-white-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10">
                         <span class=" font-semibold">Broadcast Message</span>

@@ -16,7 +16,8 @@ class Mentoring extends Model
     // fillable mendevinisikan field mana saja yang dapat kita isikan
     protected $guarded = [];
 
-    public function student(){
+    public function student()
+    {
         return $this->belongsTo(Student::class, 'student_id', 'id');
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AdminMajorController;
 use App\Http\Controllers\Admin\AdminBroadcastController;
+use App\Http\Controllers\Admin\AdminMentoringController;
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\Student\BroadcastController;
 use App\Http\Controllers\Teacher\BroadcastController as TeacherBroadcastController;
@@ -59,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add-major', [AdminMajorController::class, 'addMajor'])->name('add-major');
         Route::put('/update-major', [AdminMajorController::class, 'updateMajor'])->name('update-major');
         Route::delete('/major/{id}', [AdminMajorController::class, 'destroy'])->name('major-destroy');
+
+        Route::get('/mentoring', [AdminMentoringController::class, 'index'])->name('admin-mentoring');
+        Route::post('/remind-teacher', [AdminMentoringController::class, 'remindTeacher'])->name('remind-teacher');
 
         Route::get('/broadcast', [AdminBroadcastController::class, 'index'])->name('admin-broadcast');
         Route::post('/broadcast-messages', [AdminBroadcastController::class, 'broadcastMessage'])->name('broadcast-messages');
