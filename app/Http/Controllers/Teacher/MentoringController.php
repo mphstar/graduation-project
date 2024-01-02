@@ -16,11 +16,11 @@ class MentoringController extends Controller
     public function index(Request $request)
     {
         $student = Student::where('teacher_id', Auth::user()->teacher->id)->pluck('id');
-        $mentoring = Mentoring::with('student')->whereIn('student_id', $student)->get();
+        $mentoring = Mentoring::with('student')->whereIn('student_id', $student)->orderBy('created_at', 'desc')->get();
 
 
         if ($request->has('search')) {
-            $mentoring = Mentoring::with('student')->where('question', 'LIKE', '%' . $request->query('search') . '%')->whereIn('student_id', $student)->get();
+            $mentoring = Mentoring::with('student')->where('question', 'LIKE', '%' . $request->query('search') . '%')->whereIn('student_id', $student)->orderBy('created_at', 'desc')->get();
         }
         return view('pages.teacher.mentoring', [
             "mentoring" => $mentoring

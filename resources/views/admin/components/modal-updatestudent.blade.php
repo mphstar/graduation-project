@@ -30,6 +30,18 @@
                 <x-input-error :messages="$errors->get('update_student_id')" class="mt-2" />
             </div>
 
+            <div class="mt-4">
+                <x-input-label for="update_major_id" :value="__('Major')" />
+                <select id="update_major_id" name="update_major_id"
+                    class="block mt-1 w-full border-gray-300 rounded-md p-2 whitespace-normal">
+                    <option value="">Select Major</option>
+                    @foreach (\App\Models\Major::getDropdownList() as $majorId => $majorName)
+                        <option value="{{ $majorId }}">{{ $majorName }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('update_major_id')" class="mt-2" />
+            </div>
+
             <div class="flex flex-col items-center mt-6">
                 <button type="button" onclick="closeUpdateModal()"
                     class="bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-zinc-300 text-white font-medium rounded-lg w-full text-sm px-4 py-2 my-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-zinc-800">

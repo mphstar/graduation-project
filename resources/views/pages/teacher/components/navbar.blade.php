@@ -23,6 +23,11 @@
                     class="{{ Request::segment(2) == 'student' ? 'flex text-white bg-red-500' : '' }} px-3 py-1 rounded-md">
                     Students</div>
             </a>
+            <a class="w-full" href="{{ route('teacher.broadcast') }}">
+                <div
+                    class="{{ Request::segment(2) == 'broadcast' ? 'flex text-white bg-red-500' : '' }} px-3 py-1 rounded-md">
+                    Broadcast</div>
+            </a>
             <form class="w-full md:hidden" method="POST" action="{{ route('logout') }}">
                 @csrf
 

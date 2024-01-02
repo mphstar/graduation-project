@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 if (Auth::user()->level == 'admin') {
-                    return redirect()->route('admin.home');
+                    return redirect()->route('admin-main');
                 } else if (Auth::user()->level == 'teacher') {
                     return redirect()->route('teacher.profile');
                 } else if (Auth::user()->level == 'student') {

@@ -22,18 +22,20 @@ class AdminStudentController extends Controller
             'update_first_name' => 'required|string|max:255',
             'update_last_name' => 'required|string|max:255',
             'update_student_id' => 'required|string|max:255',
+            'update_major_id' => 'required|exists:major,id',
         ]);
 
         // Find the teacher
-        $teacher = Student::findOrFail($request->id);
+        $student = Student::findOrFail($request->id);
 
         // Update teacher fields
-        $teacher->first_name = $request->update_first_name;
-        $teacher->last_name = $request->update_last_name;
-        $teacher->student_id = $request->update_student_id;
+        $student->first_name = $request->update_first_name;
+        $student->last_name = $request->update_last_name;
+        $student->student_id = $request->update_student_id;
+        $student->major_id = $request->update_major_id;
 
         // Save the teacher
-        $teacher->save();
+        $student->save();
 
         Alert::success('Success', 'Success update profile');
         return redirect()->route('admin-student')->with('success', 'Students updated successfully');

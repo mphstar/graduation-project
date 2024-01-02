@@ -11,7 +11,7 @@ class AdminBroadcastController extends Controller
 {
     public function index()
     {
-        $broadcastMessages = BroadcastMessage::latest()->get();
+        $broadcastMessages = BroadcastMessage::orderBy('id', 'desc')->get();
 
         return view('admin.admin-broadcast', ['broadcastMessages' => $broadcastMessages]);
     }

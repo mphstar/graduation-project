@@ -14,10 +14,10 @@ class MentoringController extends Controller
 {
     public function index(Request $request)
     {
-        $mentoring = Mentoring::where('student_id', Auth::user()->student->id)->get();
+        $mentoring = Mentoring::where('student_id', Auth::user()->student->id)->orderBy('created_at', 'desc')->get();
 
         if ($request->has('search')) {
-            $mentoring = Mentoring::where('question', 'LIKE', '%' . $request->query('search') . '%')->where('student_id', Auth::user()->student->id)->get();
+            $mentoring = Mentoring::where('question', 'LIKE', '%' . $request->query('search') . '%')->where('student_id', Auth::user()->student->id)->orderBy('created_at', 'desc')->get();
         }
         return view('pages.student.mentoring', [
             "mentoring" => $mentoring

@@ -4,9 +4,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
+use App\Http\Controllers\Admin\AdminMajorController;
 use App\Http\Controllers\Admin\AdminBroadcastController;
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\Student\BroadcastController;
+use App\Http\Controllers\Teacher\BroadcastController as TeacherBroadcastController;
 use App\Http\Controllers\Student\MentoringController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Teacher\MentoringController as TeacherMentoringController;
@@ -45,13 +47,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/main', [AdminMainController::class, 'index'])->name('admin-main');
 
         Route::get('/studentlist', [AdminStudentController::class, 'index'])->name('admin-student');
-        Route::delete('/students/{id}', [AdminStudentController::class, 'destroy'])->name('students.destroy');
+        Route::delete('/students/{id}', [AdminStudentController::class, 'destroy'])->name('students-destroy');
         Route::put('/update-student', [AdminStudentController::class, 'update'])->name('update-student');
 
         Route::get('/teacherlist', [AdminTeacherController::class, 'index'])->name('admin-teacher');
         Route::post('/add-teacher', [AdminTeacherController::class, 'addTeacher'])->name('add-teacher');
         Route::put('/update-teacher', [AdminTeacherController::class, 'update'])->name('update-teacher');
         Route::delete('/teachers/{id}', [AdminTeacherController::class, 'destroy'])->name('teachers-destroy');
+
+        Route::get('/major', [AdminMajorController::class, 'index'])->name('admin-major');
+        Route::post('/add-major', [AdminMajorController::class, 'addMajor'])->name('add-major');
+        Route::put('/update-major', [AdminMajorController::class, 'updateMajor'])->name('update-major');
+        Route::delete('/major/{id}', [AdminMajorController::class, 'destroy'])->name('major-destroy');
 
         Route::get('/broadcast', [AdminBroadcastController::class, 'index'])->name('admin-broadcast');
         Route::post('/broadcast-messages', [AdminBroadcastController::class, 'broadcastMessage'])->name('broadcast-messages');
@@ -95,6 +102,10 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/', [TeacherStudentController::class, 'index'])->name('teacher.student');
                 Route::post('/broadcast', [TeacherStudentController::class, 'broadcast_message'])->name('teacher.student.broadcast');
                 Route::post('/set', [TeacherStudentController::class, 'set_student'])->name('teacher.student.set');
+            });
+
+            Route::prefix('broadcast')->group(function () {
+                Route::get('/', [TeacherBroadcastController::class, 'index'])->name('teacher.broadcast');
             });
         });
     });

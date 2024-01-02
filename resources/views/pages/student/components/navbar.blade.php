@@ -4,7 +4,7 @@
 
     </div>
     <div class="flex flex-row justify-between w-full max-w-[1280px] mx-auto px-4 py-3">
-        <h1 class="flex-1 font-bold">Graduation Guidance <span class="text-sm font-light">Teacher</span></h1>
+        <h1 class="flex-1 font-bold">Graduation Guidance <span class="text-sm font-light">Student</span></h1>
         <div id="content"
             class="flex items-center translate-x-[1280px] duration-300 ease-in-out md:translate-x-0 md:h-fit flex-col md:flex-row md:border-none rounded-md w-[80%] h-screen md:w-fit px-3 fixed right-0 top-0 py-4 md:py-0 z-[100] md:static gap-2 bg-white">
             <h1 class="mb-4 md:hidden">Select Menu</h1>

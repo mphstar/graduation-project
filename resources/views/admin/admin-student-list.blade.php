@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Include the sidebar content -->
     @include('layouts.admin-sidebar')
     @include('admin.components.modal-updatestudent')
 
-    <!-- Ucapan selamat Datang Dan Hari Ini -->
     <div class="pl-64 pt-7">
 
         <div class="p-4 mt-6">
@@ -86,8 +84,9 @@
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $student->student_id }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $student->first_name }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $student->last_name }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->major_id }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $student->user->email }}</td>
+                                            <td class="px-6 py-4">
+                                                {{ $student->major->name ?? 'No major selected' }}</td>
+                                            <td class="px-6 py-4">{{ $student->user->email }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $student->gender }}</td>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
@@ -107,7 +106,7 @@
                                                         <span class="mx-1 pr-2">Update</span>
                                                     </button>
 
-                                                    <form action="{{ route('students.destroy', $student->id) }}"
+                                                    <form action="{{ route('students-destroy', $student->id) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')

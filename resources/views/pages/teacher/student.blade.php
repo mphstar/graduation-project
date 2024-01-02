@@ -44,10 +44,13 @@
                         @endif
                         <form class="" id="form_delete" action="" method="post">
                             @csrf
+                            @php
+                                $no = 1;
+                            @endphp
 
                             @foreach ($student as $item)
                                 <tr class="" style="opacity: 1; transform: none;">
-                                    <td class="text-left px-4 py-3">1</td>
+                                    <td class="text-left px-4 py-3">{{ $no }}</td>
                                     <td class="text-left px-4 py-3">{{ $item->first_name }}</td>
                                     <td class="text-left px-4 py-3">{{ $item->last_name }}</td>
                                     <td class="text-left px-4 py-3">{{ $item->student_id ? $item->student_id : '-' }}</td>
@@ -55,6 +58,10 @@
 
 
                                 </tr>
+
+                                @php
+                                    $no++;
+                                @endphp
                             @endforeach
 
 
