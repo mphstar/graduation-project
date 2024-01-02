@@ -41,9 +41,12 @@
                         <form class="" id="form_delete" action="" method="post">
                             @csrf
 
+                            @php
+                                $no = 1;
+                            @endphp
                             @foreach ($mentoring as $item)
                                 <tr class="" style="opacity: 1; transform: none;">
-                                    <td class="text-left px-4 py-3">1</td>
+                                    <td class="text-left px-4 py-3">{{ $no }}</td>
                                     <td class="text-left px-4 py-3">
                                         {{ $item->student->first_name . ' ' . $item->student->last_name }}</td>
                                     <td class="text-left px-4 py-3">{{ $item->question }}</td>
@@ -71,6 +74,9 @@
                                     </td>
 
                                 </tr>
+                                @php
+                                    $no++;
+                                @endphp
                             @endforeach
 
 

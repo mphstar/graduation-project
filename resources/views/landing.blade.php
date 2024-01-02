@@ -36,12 +36,14 @@
                     </div>
                 </div>
                 <div class="flex-1 self-end md:flex items-end justify-end hidden"><!-- Authentication -->
-                    <x-dropdown-link class=" w-fit" :href="route('login')">
-                        {{ __('Log In') }}
-                    </x-dropdown-link>
-                    <x-dropdown-link class=" w-fit" :href="route('register')">
-                        {{ __('Sign Up') }}
-                    </x-dropdown-link>
+                    <a class="w-fit" href="{{ route('login') }}">
+                        <div class=" px-2 hover:bg-gray-100 py-1 rounded-md">
+                            Log In</div>
+                    </a>
+                    <a class="w-fit" href="{{ route('register') }}">
+                        <div class=" px-2 hover:bg-gray-100 py-1 rounded-md">
+                            Sign Up</div>
+                    </a>
                 </div>
                 <div onclick="handleModal()" class="items-center flex justify-center md:hidden">
                     <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 15 15" height="1.5em"

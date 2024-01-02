@@ -1,48 +1,69 @@
+const ctx = document.getElementById("myChart");
+const totalQuestion = document.getElementById("totalQuestion");
+const totalAnswer = document.getElementById("totalAnswer");
 
-var labels = [];
-var questionCounts = [];
-var answerCounts = [];
-
-// Extract data for questions
-questionsData.forEach(function (item) {
-    labels.push(item.created_at);
-    questionCounts.push(item.count);
-});
-
-// Extract data for answers
-answersData.forEach(function (item) {
-    answerCounts.push(item.count);
-});
-
-var data = {
-    labels: labels,
-    xLabels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
+var options = {
+    chart: {
+        type: "bar",
+    },
+    series: [
         {
-            label: "Questions",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            pointBorderColor: "rgba(75,192,192,1)",
-            data: questionCounts,
-            spanGaps: false,
+            name: "Total",
+            data: [totalQuestion.innerHTML, totalAnswer.innerHTML],
         },
-        {
-            label: "Answers",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,0,192,0.4)",
-            borderColor: "rgba(75,0,192,1)",
-            pointBorderColor: "rgba(75,0,192,1)",
-            data: answerCounts,
-            spanGaps: false,
-        }
-    ]
+    ],
+    xaxis: {
+        categories: ["Question", "Answer"],
+    },
 };
 
-var ctx = document.getElementById("myChart").getContext("2d");
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-});
+var chart = new ApexCharts(ctx, options);
+
+chart.render();
+
+const handleChange = (e, data) => {
+    switch (e.value) {
+        case "daily":
+            totalQuestion.innerHTML = data.daily.question;
+            totalAnswer.innerHTML = data.daily.answer;
+
+            updateChart(data.daily.question, data.daily.answer);
+            break;
+        case "weekly":
+            totalQuestion.innerHTML = data.weekly.question;
+            totalAnswer.innerHTML = data.weekly.answer;
+
+            updateChart(data.weekly.question, data.weekly.answer);
+            break;
+        case "monthly":
+            totalQuestion.innerHTML = data.monthly.question;
+            totalAnswer.innerHTML = data.monthly.answer;
+
+            updateChart(data.monthly.question, data.monthly.answer);
+            break;
+        case "yearly":
+            totalQuestion.innerHTML = data.yearly.question;
+            totalAnswer.innerHTML = data.yearly.answer;
+
+            updateChart(data.yearly.question, data.yearly.answer);
+            break;
+
+        default:
+            totalQuestion.innerHTML = data.all.question;
+            totalAnswer.innerHTML = data.all.answer;
+
+            updateChart(data.all.question, data.all.answer);
+            break;
+    }
+};
+
+const updateChart = (question, answer) => {
+    chart.updateOptions({
+        series: [
+            {
+                name: "Total",
+                data: [question, answer], // New data
+            },
+        ],
+    });
+};
